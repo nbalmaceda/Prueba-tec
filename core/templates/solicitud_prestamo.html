@@ -1,0 +1,89 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} {{titulo}} {% endblock %} 
+
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <!--<div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">{{titulo}}</h5>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            
+                        <!-- Input group -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>{{titulo}}</h5>
+                            </div>
+                            <div class="card-body">
+
+                                <label>Nombre</label>
+                            <form role="form" method="post" action="">
+
+                                {% csrf_token %} 
+
+                                <div class="input-group mb-3">
+                                    {{ form.nombre }}
+                                </div>
+                                <label>Apellido</label>
+                                <div class="input-group mb-3">
+                                    {{ form.apellido }}
+                                </div>
+                                <label >DNI</label>
+                                <div class="input-group mb-3">
+                                    {{form.dni}}
+                                </div>
+                                <label>Sexo</label>
+                                <div class="input-group mb-3">
+                                    {{ form.sexo }}
+                                </div>
+                                <label>Email</label>
+                                <div class="input-group mb-3">
+                                    {{ form.email }}
+                                </div>
+                                <label>Monto</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    {{ form.monto }}
+                                </div>
+                                <button type="submit" class="btn btn-info">Enviar</button>
+
+                                <br></br>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

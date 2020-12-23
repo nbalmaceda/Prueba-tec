@@ -1,0 +1,13 @@
+{% load static %}
+
+<ul class="pagination pagination-sm m-0 float-right">
+                {% if results.has_previous %}
+                  <li class="page-item"><a class="page-link" href="?page=1{% if request.GET.dni_search %}&dni_search={{ request.GET.dni_search }}{% endif %}">&laquo;</a></li>
+                  <li class="page-item"><a class="page-link" href="?page={{ results.previous_page_number }}{% if request.GET.dni_search %}&dni_search={{ request.GET.dni_search }}{% endif %}">Prev</a></li>
+                {% endif %}
+                Pag {{ results.number }} - {{ results.paginator.num_pages }}.
+                {% if results.has_next %}  
+                  <li class="page-item"><a class="page-link" href="?page={{ results.next_page_number }}{% if request.GET.dni_search %}&dni_search={{ request.GET.dni_search }}{% endif %}">Next</a></li>
+                  <li class="page-item"><a class="page-link" href="?page={{ results.paginator.num_pages }}{% if request.GET.dni_search %}&dni_search={{ request.GET.dni_search }}{% endif %}">Last &raquo;</a></li>
+                {% endif %} 
+</ul>

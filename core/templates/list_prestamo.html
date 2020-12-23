@@ -1,0 +1,111 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} {{titulo}} {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+
+        <!-- [ breadcrumb ] end -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                        <form class="form-group" method="get" >
+
+                            <div class="card-header">
+                                <h3 class="card-title">{{titulo}}</h3>
+                
+                                <div class="card-tools">
+                                    <div class="input-group input-group-sm" style="width: 500px;">
+                                        <input type="text" name="dni_search" class="form-control float-right" placeholder="DNI" />
+                                        <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default"><i class="fas fa-filter"></i></button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                                {% if results  %}  Cantidad de prestamos: {{cant_prestamos}} {% endif %}
+                                <div class="card-block px-0 py-3">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>DNI</th>
+                                            <th>Sexo</th>
+                                            <th>Email</th>
+                                            <th>Monto $</th>
+                                            <th>Accion</th>
+                                            </tr>
+                                        </thead>
+                                            <tbody>
+                                                {% if results  %}
+                                                {% for prestamo in results %}
+                                                <tr class="unread">
+                                                    <td>
+                                                        <h6 class="mb-1">{{prestamo.nombre}}</h6>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="mb-1">{{prestamo.apellido}}</h6>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="mb-1">{{prestamo.dni}}</h6>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="mb-1">{{prestamo.sexo}}</h6>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="mb-1">{{prestamo.email}}</h6>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="mb-1">${{prestamo.monto}}</h6>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <a href="{% url 'editar_prestamo' prestamo.id %}"><span class="pcoded-micon"><i class="feather icon-edit"></i></span></a>
+                                                        <a href="{% url 'borrar_prestamo' prestamo.id %}"><span class="pcoded-micon"><i class="feather icon-trash"></i></span></a>
+                                                    </td>
+                                                  
+                                                </tr>
+                                                {% endfor %}
+                                                {% else %}
+                                                <b>No hay prestamos</b>
+                                                {% endif%}  
+                                            </tbody>
+                                        </table>
+                                        <div class="card-footer clearfix">
+                                            {% include 'includes/paginator.html' %}
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

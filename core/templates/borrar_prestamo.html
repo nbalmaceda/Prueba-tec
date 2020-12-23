@@ -1,0 +1,29 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} {{titulo}} {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<hr/>
+
+<br/>
+<div class="card">
+    <div class="card-header">
+    <h4>{{titulo}}</h4>
+    </div>
+    <div class="card-body">
+            <form method="POST">
+            {% csrf_token %}
+            <h5> Cliente: {{prestamo.nombre}} {{prestamo.apellido}} DNI: {{prestamo.dni}} Monto: ${{prestamo.monto}}</h5>
+            <button class="btn btn-danger" type="submit"> Confirmar </button>
+            <a class="btn btn-default" href="{% url 'list_prestamo' %}"> Cancelar </a>
+
+            </form>
+    </div>
+</div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
