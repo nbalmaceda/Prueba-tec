@@ -14,7 +14,6 @@ SECRET_KEY = 'pcw78-x@u#$(j6k*4svl^qw6kq)a^g(!u9zk14c^om@#t*dsgz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
@@ -27,9 +26,25 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sweetify',
+    'rest_framework', # Crear API con DRF
     'app'  # App para prueba tecnica
 ]
 SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    )
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
